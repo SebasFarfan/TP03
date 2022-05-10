@@ -14,8 +14,10 @@ def eliminarSignosPuntuacion(texto):
     return: [str]
     '''
     textoLimpio=''
+    signosAgregados = '¿¡'
+    signosPuntuacion = string.punctuation + signosAgregados
     for palabra in texto:
-        if palabra not in string.punctuation:
+        if palabra not in signosPuntuacion:
             textoLimpio+=palabra
     return textoLimpio
 
@@ -29,7 +31,10 @@ def eliminarStopWords(listaPalabra):
 
     return: list [] 
     '''
-    stop_words=set(stopwords.words('spanish'))
+    stop_words=stopwords.words('spanish')
+    stopWordsAgregados=['podría','ser','cómo','según','pueden']
+    stop_words.extend(stopWordsAgregados)
+
     listaSinStopWords=[]
     for palabra  in listaPalabra:
         if palabra not in stop_words:
@@ -87,3 +92,29 @@ def stemmingSnowBall(datos):
     listado.append(palabras)
     listado.append(stems)        
     return listado
+
+def ponerMinuscula(listaPalabras):
+    '''
+    Método que pone en minusculas las palabras de una lista. 
+    arg:
+        listaPalabras: [list] 
+    Return:
+        listaMinuscula = [list]
+    '''
+    listaMinuscula = []
+    for palabra in listaPalabras:
+        listaMinuscula.append(palabra.lower())
+    return listaMinuscula
+
+def ponerMayuscula(listaPalabras):
+    '''
+    Método que pone en mayúscula las palabras de una lista. 
+    arg:
+        listaPalabras: [list] 
+    Return:
+        listaMayuscula = [list]
+    '''
+    listaMayuscula = []
+    for palabra in listaPalabras:
+        listaMayuscula.append(palabra.lower())
+    return listaMayuscula
