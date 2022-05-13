@@ -14,7 +14,7 @@ def eliminarSignosPuntuacion(texto):
     return: [str]
     '''
     textoLimpio=''
-    signosAgregados = '¿¡'
+    signosAgregados = '¿¡”“'
     signosPuntuacion = string.punctuation + signosAgregados
     for palabra in texto:
         if palabra not in signosPuntuacion:

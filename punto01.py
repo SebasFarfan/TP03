@@ -23,7 +23,7 @@ def obtenerEnlaces(urlnivel, urlOriginal='https://www.fi.unju.edu.ar/', listaEnl
             list [] lista de enlaces
     '''    
     pagina = requests.get(urlnivel, verify=False)
-    print(pagina)
+    # print(pagina)
     # obtener el contenido de la pagina
     htmls = BeautifulSoup(pagina.content, 'html.parser')
     etiquetas = htmls('a')
@@ -63,16 +63,17 @@ for enlace in listadoNivel1:
     print(cont,'- enlace:',enlace)
     print('Obteniendo enlace de nivel 2')
     try:
-      listadoNivel2=obtenerEnlaces(enlace)
+        listadoNivel2=obtenerEnlaces(enlace)
+        print(len(listadoNivel2),'Enlaces de nivel 2')    
+        listadosEnlacesNivel2.append(listadoNivel2)
     except requests.exceptions.ConnectionError:
-      print('no se puede acceder')
-    print(len(listadoNivel2),'Enlaces de nivel 2')    
-    listadosEnlacesNivel2.append(listadoNivel2)
+        print('no se puede acceder')
+    
 print('\n\n')
 print('-'*80)
 print('terminó de procesar los',len(listadoNivel1),'enlaces')
 
-print('Guardando en archivo salida.cvs...')
+print('Guardando en archivo salida.csv...')
 encabezado1=['Nivel 1']
 encabezado2=['Nivel 2']
 with open('./salida.csv','w') as csv_file:
