@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from wordcloud import WordCloud
 from tp02 import modulos as procesoTexto
 import matplotlib.pyplot as plt
-import pandas
 from colorama import Fore, Style, init 
 
 init(autoreset=True)
@@ -97,7 +96,10 @@ def generarNubePalabras(texto):
         Arg: 
             texto: [str] 
     '''
-    nubePalabra = WordCloud(height=800,width=800, background_color='white', max_words=100, min_font_size=5, collocation_threshold=10).generate(texto)
+    nubePalabra = WordCloud(height=800,width=800, 
+                            background_color='white', 
+                            max_words=100, min_font_size=5, 
+                            collocation_threshold=10).generate(texto)
     nubePalabra.to_file('nube_palabra.png')
     # grafico
     plt.figure(figsize=(10,8))
